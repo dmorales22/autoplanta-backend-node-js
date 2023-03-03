@@ -6,18 +6,48 @@ const mongoose = require("mongoose");
  */
 const AgentSchema = new mongoose.Schema(
   {
-    first_name: String,
+    username: {
+      type: String,
+      unique: true,
+    },
+    first_name: {
+      type: String,
+      default: "",
+    },
     middle_name: {
       type: String,
       default: "",
     },
-    last_name: String,
+    password: String,
+    token: String,
+    last_name: {
+      type: String,
+      default: "",
+    },
     email: {
       type: String,
       unique: true,
     },
-    password: String,
-    token: String,
+    phone: {
+      type: String,
+      unique: true,
+    },
+    is_hidden: {
+      type: Boolean,
+      default: false,
+    },
+    secure_mode: {
+      type: Boolean,
+      default: false,
+    },
+    secret_key: {
+      type: String,
+      default: "",
+    },
+    organization_id: {
+      type: mongoose.Types.ObjectId,
+      default: null,
+    },
   },
   { timestamps: true }
 );

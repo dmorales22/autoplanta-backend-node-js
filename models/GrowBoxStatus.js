@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 
 const GrowBoxStatusSchema = new mongoose.Schema(
   {
-    grow_box_id: {
-      type: mongoose.Types.ObjectId,
-      default: null,
-    },
     temperature: {
       type: Number,
       default: null,
@@ -29,6 +25,18 @@ const GrowBoxStatusSchema = new mongoose.Schema(
     flagged_for_deletion: {
       type: Boolean,
       default: false,
+    },
+    grow_box_id: {
+      type: mongoose.Types.ObjectId,
+      default: null,
+    },
+    grow_cycle_id: {
+      type: mongoose.Types.ObjectId,
+      default: null,
+    },
+    organization_id: {
+      type: mongoose.Types.ObjectId,
+      default: null,
     },
   },
   { timestamps: true }

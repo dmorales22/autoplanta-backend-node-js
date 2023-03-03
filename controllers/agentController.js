@@ -102,7 +102,7 @@ exports.signInAgent = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { user_id: agent._id, email },
+      { user_id: agent._id, email: email },
       process.env.TOKEN_KEY,
       {
         expiresIn: "8h",
@@ -111,6 +111,18 @@ exports.signInAgent = async (req, res) => {
 
     //You can add additional attributes to the req.session objects
     req.session.agent_id = agent._id.toString();
+    req.session.email = agent.email;
+
+    if (agent.organization_id) {
+      req.session.organization_id = agent.organization_id.toString();
+    } else {
+      req.session.organization_id = null;
+    }
+
+    if(agent.secure_mode) { //todo
+      //decrypt secret_key
+      req.session.secret_key = "addkeyhere";
+    }
 
     if (process.env.DEPLOYMENT === "1") {
       res.cookie("jwt", agent.token, {

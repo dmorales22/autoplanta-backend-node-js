@@ -14,6 +14,10 @@ const GrowBoxStatusSchema = new mongoose.Schema(
       type: [String],
       default: [],
     },
+    qr_code: {
+      type: String,
+      default: "",
+    },
     grow_box_type: {
       type: String,
       default: "generic",
@@ -46,13 +50,29 @@ const GrowBoxStatusSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    agent_id: {
+    owner_agent_id: {
       type: mongoose.Types.ObjectId,
       default: null,
+    },
+    agent_ids: {
+      type: [mongoose.Types.ObjectId],
+      default: [],
+    },
+    share_with_agents: {
+      type: Boolean,
+      default: false,
+    },
+    share_with_organization: {
+      type: Boolean,
+      default: false,
     },
     organization_id: {
       type: mongoose.Types.ObjectId,
       default: null,
+    },
+    secure_mode: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }
