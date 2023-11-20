@@ -4,44 +4,55 @@ const mongoose = require("mongoose");
  *
  * @type {module:mongoose.Schema<any, Model<any, any, any, any>, {}, {}, {}, {}, {timestamps: boolean}, {phone: {unique: boolean, type: StringConstructor, required: boolean}, last_name: StringConstructor, first_name: StringConstructor, email: {sparse: boolean, unique: boolean, type: StringConstructor}}>}
  */
-const PlantSchema = new mongoose.Schema(
+const MultimediaSchema = new mongoose.Schema(
   {
-    plant_name: {
+    media_name: {
       type: String,
       default: "",
     },
-    plant_type: {
+    media_type: {
       type: String,
-      default: "generic",
+      default: "unspecified",
     },
-    plant_strain: {
+    media_format: {
       type: String,
-      default: "generic",
+      default: "unknown",
     },
-    plant_species: {
+    media_url: {
       type: String,
       default: "",
     },
-    additional_data: {
+    media_data: {
       type: mongoose.Types.Mixed,
       default: null,
     },
-    qr_code: {
+    media_size: {
+      type: Number,
+      default: null, //Stored in bytes
+    },
+    description: {
       type: String,
       default: "",
     },
-    pot_id: {
-      type: mongoose.Types.ObjectId,
+    tags: {
+      type: [String],
+      default: "",
+    },
+    api: {
+      type: mongoose.Types.Mixed,
       default: null,
     },
-    grow_cycle_id: {
-      type: mongoose.Types.ObjectId,
+    metadata: {
+      type: mongoose.Types.Mixed,
       default: null,
     },
-    grow_box_id: {
-      type: mongoose.Types.ObjectId,
-      default: null,
-      ref: "GrowBox",
+    is_locally_stored: {
+      type: Boolean,
+      default: true,
+    },
+    secure_mode: {
+      type: Boolean,
+      default: false,
     },
     owner_agent_id: {
       type: mongoose.Types.ObjectId,
@@ -67,4 +78,4 @@ const PlantSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Plant", PlantSchema, "Plant");
+module.exports = mongoose.model("Multimedia", MultimediaSchema, "Multimedia");

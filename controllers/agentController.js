@@ -58,6 +58,7 @@ exports.createAgent = async (req, res) => {
       data: {
         first_name: agent.first_name,
         last_name: agent.last_name,
+        email: agent.email
       },
     });
   } catch (err) {
@@ -91,21 +92,21 @@ exports.signInAgent = async (req, res) => {
 
     if (!agent) {
       return res
-        .status(400)
-        .send({ result: false, msg: "Invalid credentials." });
+        .status(401)
+        .send({ result: false, msg: "Invalid email/password." });
     }
 
     if (!(await bcrypt.compare(password, agent.password))) {
       return res
-        .status(400)
-        .send({ result: false, msg: "Invalid credentials." });
+        .status(401)
+        .send({ result: false, msg: "Invalid email/password." });
     }
 
     const token = jwt.sign(
       { user_id: agent._id, email: email },
       process.env.TOKEN_KEY,
       {
-        expiresIn: "8h",
+        expiresIn: "24h",
       }
     );
 

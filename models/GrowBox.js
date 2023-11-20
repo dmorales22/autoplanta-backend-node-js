@@ -6,6 +6,10 @@ const GrowBoxStatusSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    grow_box_status: {
+      type: String,
+      default: "in-use", //in-use, in-maintenance, inactive, deleted
+    },
     description: {
       type: String,
       default: "",
@@ -22,10 +26,6 @@ const GrowBoxStatusSchema = new mongoose.Schema(
       type: String,
       default: "generic",
     },
-    number_of_plants: {
-      type: Number,
-      default: null,
-    },
     number_of_compartments: {
       type: Number,
       default: null,
@@ -34,9 +34,9 @@ const GrowBoxStatusSchema = new mongoose.Schema(
       type: [mongoose.Types.ObjectId],
       default: [],
     },
-    grow_box_status: {
+    grow_box_cycle_status: {
       type: String,
-      default: "vegetative",
+      default: "unspecified",
     },
     lighting_type: {
       type: String,
@@ -45,6 +45,10 @@ const GrowBoxStatusSchema = new mongoose.Schema(
     is_active: {
       type: Boolean,
       default: true,
+    },
+    is_archived: {
+      type: Boolean,
+      default: false,
     },
     flagged_for_deletion: {
       type: Boolean,
@@ -73,6 +77,14 @@ const GrowBoxStatusSchema = new mongoose.Schema(
     secure_mode: {
       type: Boolean,
       default: false,
+    },
+    additional_data: {
+      type: mongoose.Types.Mixed,
+      default: null,
+    },
+    api: {
+      type: mongoose.Types.Mixed,
+      default: null,
     },
   },
   { timestamps: true }

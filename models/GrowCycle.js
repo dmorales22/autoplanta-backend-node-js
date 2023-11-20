@@ -39,6 +39,14 @@ const GrowCycleSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       default: null,
     },
+    additional_data: {
+      type: mongoose.Types.Mixed,
+      default: null,
+    },
+    api: {
+      type: mongoose.Types.Mixed,
+      default: null,
+    },
   },
   { timestamps: true }
 );
